@@ -13,10 +13,13 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['"PT Sans"', 'sans-serif'],
             },
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        require("daisyui")
+    ],
 };
