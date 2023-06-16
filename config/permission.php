@@ -111,7 +111,7 @@ return [
      * 'model_has_permissions'(view the latest version of package's migration file)
      */
 
-    'teams' => true,
+    'teams' => false,
 
     /*
      * When set to true, the required permission names are added to the exception
@@ -133,7 +133,7 @@ return [
      * By default wildcard permission lookups are disabled.
      */
 
-    'enable_wildcard_permission' => false,
+    'enable_wildcard_permission' => true,
 
     'cache' => [
 

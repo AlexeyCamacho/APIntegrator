@@ -22,10 +22,15 @@ class UserSeeder extends Seeder
             return;
         }
 
-        User::firstOrCreate([
+        $user = User::create([
             'name' => $this->login,
             'email' => $this->login . '@mail.ru',
             'password' => Hash::make($this->password)
         ]);
+
+        if ($user) {
+            $user = User::where('name', $this->login)->first();
+            $user->syncRoles('admin');
+        }
     }
 }
