@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.label {
+    @apply pb-1;
+}
+
+.input-bordered {
+    border-color: hsl(var(--b3) / var(--tw-border-opacity));
+}
+
+.textarea-bordered {
+    border-color: hsl(var(--b3) / var(--tw-border-opacity));
+}
+
+.btn {
+    @apply min-h-min h-9;
+}

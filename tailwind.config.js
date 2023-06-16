@@ -13,7 +13,7 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['"PT Sans"', 'sans-serif'],
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
         },
     },
@@ -22,4 +22,8 @@ export default {
         forms,
         require("daisyui")
     ],
+
+    daisyui: {
+        themes: ["winter"],
+    },
 };
