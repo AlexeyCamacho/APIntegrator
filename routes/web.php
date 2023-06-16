@@ -23,3 +23,9 @@ require __DIR__.'/auth.php';
 Route::any( '/{any}', function(){
     return view('main');
 })->where('any', '^((?!api\/).)*$')->middleware('auth');
+
+Route::prefix("api")->group(function () {
+    Route::prefix("devices")->group(function () {
+        require __DIR__.'/devices.php';
+    });
+});

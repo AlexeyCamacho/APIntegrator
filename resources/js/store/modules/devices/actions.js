@@ -4,11 +4,24 @@ import { useToast } from 'vue-toastification';
 const toast = useToast();
 
 export default {
-    async loadDevices(context, user_id) {
-        return await devices.loadDevices().then((response) => {
-            context.commit('setDevices', response.data)
-        }).catch((e) => {
-            throw new Error(e.response.data)
-        })
+    async loadDevices(state) {
+        return await devices.loadDevices()
+            .then((response) => {
+                state.commit('setDevices', response.data.device);
+            })
+            .catch((e) => {
+                toast.error(e.response.data.message);
+            });
+    },
+    async storeDevice(state, device) {
+        return await devices.storeDevice(device)
+            .then((response) => {
+                state.commit('pushDevice', response.data);
+                toast.success('Устройство добавлено');
+                console.log(response.data);
+            })
+            .catch((e) => {
+                toast.error(e.response.data.message);
+            });
     },
 }
