@@ -7,6 +7,9 @@
             <div v-if="!devicesCount" class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 Устройств не найдено
             </div>
+            <div v-for="device in this.getDevices" class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4 my-4">
+                    {{ device.name }}
+            </div>
         </div>
     </div>
 
@@ -17,17 +20,17 @@
             </h2>
             <form>
                 <div class="form-control w-full my-1">
-                    <label class="label">
+                    <label class="label" for="name">
                         <span class="label-text">Имя устройства</span>
                     </label>
-                    <input type="text" name="name" v-model="this.newDeviceForm.data.name" placeholder="Кофе-машина" class="input input-bordered w-full input-sm" />
+                    <input type="text" name="name" id="name" autocomplete v-model="this.newDeviceForm.data.name" placeholder="Кофе-машина" class="input input-bordered w-full input-sm" />
                     <ErrorsMessage :errors="v$.newDeviceForm.data.name.$errors"></ErrorsMessage>
                 </div>
                 <div class="form-control">
-                    <label class="label">
+                    <label class="label" for="description">
                         <span class="label-text">Описание устройства</span>
                     </label>
-                    <textarea name="description" v-model="this.newDeviceForm.data.description" class="textarea textarea-bordered h-24 resize-none" placeholder="ТЦ 'МегаСити'"></textarea>
+                    <textarea name="description" id="description" v-model="this.newDeviceForm.data.description" class="textarea textarea-bordered h-24 resize-none" placeholder="ТЦ 'МегаСити'"></textarea>
                 </div>
             </form>
 
@@ -116,6 +119,9 @@ export default {
                 this.newDeviceForm.data[key] = '';
             }
         }
+    },
+    beforeMount() {
+        this.loadDevices();
     }
 }
 </script>

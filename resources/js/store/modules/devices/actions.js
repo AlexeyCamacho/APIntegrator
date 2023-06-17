@@ -7,7 +7,7 @@ export default {
     async loadDevices(state) {
         return await devices.loadDevices()
             .then((response) => {
-                state.commit('setDevices', response.data.device);
+                state.commit('setDevices', response.data);
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
@@ -16,9 +16,8 @@ export default {
     async storeDevice(state, device) {
         return await devices.storeDevice(device)
             .then((response) => {
-                state.commit('pushDevice', response.data);
+                state.commit('pushDevice', response.data.device);
                 toast.success('Устройство добавлено');
-                console.log(response.data);
             })
             .catch((e) => {
                 toast.error(e.response.data.message);

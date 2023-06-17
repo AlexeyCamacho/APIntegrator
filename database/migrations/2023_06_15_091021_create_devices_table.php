@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('login');
             $table->string('password');
             $table->string('name', 64);
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

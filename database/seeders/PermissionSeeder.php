@@ -19,13 +19,11 @@ class PermissionSeeder extends Seeder
 
         // Права для юзеров
         Permission::create(['name' => 'devices.create']);
+        Permission::create(['name' => 'devices.view']);
 
         /*
         Permission::create(['name' => 'devices.view.1']);
         Permission::create(['name' => 'devices.control.1']);
-
-        Permission::create(['name' => 'devices.edit.1']);
-        Permission::create(['name' => 'devices.delete.1']);
 
         Permission::create(['name' => 'devices.*.1']);
         */

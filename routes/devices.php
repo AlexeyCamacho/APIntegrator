@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Actions\Devices\StoreDevice;
+use App\Actions\Devices\GetDevices;
 
 Route::middleware(['auth'])->group(function () {
-    //Route::get('/', 'get')->name('devices.get');
+    Route::get('/', GetDevices::class)->name('devices.get');
     Route::post('/', StoreDevice::class)->name('devices.store');
 //    Route::get('/{id}/show', 'show')->name('devices.show');
 //    Route::get('/{id}/edit', 'edit')->name('devices.edit');
