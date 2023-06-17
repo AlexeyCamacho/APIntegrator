@@ -1,11 +1,8 @@
 <?php
 namespace App\Actions\Devices;
 
-use Illuminate\Support\Facades\Hash;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
-use Illuminate\Support\Str;
-use App\Models\Device;
 use App\Models\User;
 
 class GetDevices

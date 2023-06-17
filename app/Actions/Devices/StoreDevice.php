@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Hash;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use Illuminate\Support\Str;
-use App\Models\Device;
 use App\Models\User;
 
 class StoreDevice
@@ -22,6 +21,8 @@ class StoreDevice
             'login' => Str::ulid(),
             'password' => Hash::make($password),
         ]);
+
+        SetDeviceAdmin::run($user, $device);
 
         return [
             'password' => $password,
