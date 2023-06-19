@@ -12,9 +12,12 @@ class Device extends Model
 
     protected $fillable = [
         'login',
-        'password',
         'name',
         'description',
+    ];
+
+    protected $hidden = [
+        'password',
     ];
 
     public function users(): BelongsToMany

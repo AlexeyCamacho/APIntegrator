@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function devices(): BelongsToMany
     {
-        return $this->belongsToMany(Device::class);
+        return $this->belongsToMany(Device::class)->orderByDesc('created_at');
     }
 }

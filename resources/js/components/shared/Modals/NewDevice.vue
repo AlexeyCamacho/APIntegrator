@@ -9,14 +9,14 @@
                     <label class="label" for="name">
                         <span class="label-text">Имя устройства</span>
                     </label>
-                    <input type="text" name="name" id="name" autocomplete v-model="this.newDeviceForm.data.name" placeholder="Кофе-машина" class="input input-bordered w-full input-sm" />
+                    <input type="text" name="name" id="name" v-model="this.newDeviceForm.data.name" placeholder="Кофе-машина" class="input input-bordered w-full input-sm" autocomplete="on"/>
                     <ErrorsMessage :errors="v$.newDeviceForm.data.name.$errors"></ErrorsMessage>
                 </div>
                 <div class="form-control">
                     <label class="label" for="description">
                         <span class="label-text">Описание устройства</span>
                     </label>
-                    <textarea name="description" id="description" v-model="this.newDeviceForm.data.description" class="textarea textarea-bordered h-24 resize-none" placeholder="ТЦ 'МегаСити'"></textarea>
+                    <textarea name="description" id="description" v-model="this.newDeviceForm.data.description" class="textarea textarea-bordered h-24 resize-none" placeholder="ТЦ 'МегаСити'" autocomplete="on"></textarea>
                 </div>
             </form>
 
@@ -62,7 +62,7 @@ export default {
     props: {
         show: Boolean
     },
-    emits: ['update:show'],
+    emits: ['update:show', 'succeedStoreDevice'],
     computed: {
         proxyShow: {
             get() {
@@ -100,6 +100,7 @@ export default {
                 await this.storeDevice(this.newDeviceForm.data)
                     .then((response) => {
                         this.proxyShow = false;
+                        this.$emit('succeedStoreDevice', response.password);
                     });
             }
             this.newDeviceForm.processing = false;
