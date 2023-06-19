@@ -13,78 +13,22 @@
         </div>
     </div>
 
-    <Modal :show="showAddDeviceModal" @close="closeAddDeviceModal">
-        <div class="p-6">
-            <h2 class="text-lg font-medium text-gray-900">
-                Добавление нового устройства
-            </h2>
-            <form>
-                <div class="form-control w-full my-1">
-                    <label class="label" for="name">
-                        <span class="label-text">Имя устройства</span>
-                    </label>
-                    <input type="text" name="name" id="name" autocomplete v-model="this.newDeviceForm.data.name" placeholder="Кофе-машина" class="input input-bordered w-full input-sm" />
-                    <ErrorsMessage :errors="v$.newDeviceForm.data.name.$errors"></ErrorsMessage>
-                </div>
-                <div class="form-control">
-                    <label class="label" for="description">
-                        <span class="label-text">Описание устройства</span>
-                    </label>
-                    <textarea name="description" id="description" v-model="this.newDeviceForm.data.description" class="textarea textarea-bordered h-24 resize-none" placeholder="ТЦ 'МегаСити'"></textarea>
-                </div>
-            </form>
-
-            <div class="mt-6 flex justify-end gap-2">
-                <button class="btn btn-active btn-neutral" @click="closeAddDeviceModal"> Отмена </button>
-                <button
-                    class="btn btn-primary"
-                    :class="{ 'opacity-25': this.newDeviceForm.processing }"
-                    :disabled="this.newDeviceForm.processing"
-                    @click="newDevice"
-                >
-                    Добавить
-                </button>
-            </div>
-        </div>
-    </Modal>
+    <NewDeviceModal v-model:show="this.showAddDeviceModal"></NewDeviceModal>
 
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Modal from '../components/shared/Modal.vue';
-import { useVuelidate } from '@vuelidate/core'
-import { required, minLength, requiredIf } from '@vuelidate/validators'
-import ErrorsMessage from "../components/shared/ErrorsMessage.vue";
+import NewDeviceModal from '../components/shared/Modals/NewDevice.vue';
 
 export default {
     components: {
-        Modal,
-        ErrorsMessage
+        NewDeviceModal,
     },
-    setup: () => ({ v$: useVuelidate() }),
-    validations () {
-        return {
-            newDeviceForm: {
-                data: {
-                    name: {
-                        required,
-                        minLength: minLength(3)
-                    },
-                }
-            }
-        }
-    },
+
     data() {
         return {
             showAddDeviceModal: false,
-            newDeviceForm: {
-                data: {
-                    name: '',
-                    description: ''
-                },
-                processing: false,
-            }
         }
     },
     computed: {
@@ -95,30 +39,11 @@ export default {
     },
     methods: {
         ...mapActions([
-            'loadDevices',
-            'storeDevice'
+            'loadDevices'
         ]),
-        closeAddDeviceModal() {
-            this.showAddDeviceModal = false;
-            this.v$.$reset();
-            this.resetNewDeviceForm();
-        },
         openAddDeviceModal() {
             this.showAddDeviceModal = true;
         },
-        async newDevice() {
-            this.newDeviceForm.processing = true;
-            let isFormCorrect = await this.v$.$validate()
-            if (isFormCorrect) {
-                await this.storeDevice(this.newDeviceForm.data);
-            }
-            this.newDeviceForm.processing = false;
-        },
-        resetNewDeviceForm() {
-            for (let key in this.newDeviceForm.data) {
-                this.newDeviceForm.data[key] = '';
-            }
-        }
     },
     beforeMount() {
         this.loadDevices();

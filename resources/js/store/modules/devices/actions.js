@@ -8,6 +8,7 @@ export default {
         return await devices.loadDevices()
             .then((response) => {
                 state.commit('setDevices', response.data);
+                return response.data;
             })
             .catch((e) => {
                 toast.error(e.response.data.message);

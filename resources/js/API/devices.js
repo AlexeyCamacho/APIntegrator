@@ -6,7 +6,6 @@ export default {
         return axios.get(`${path}/`);
     },
     async storeDevice(device) {
-        console.log(device);
         return axios.post(`${path}/`, device);
     },
 }
