@@ -6,16 +6,16 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                 </label>
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <router-link :to="{ name: 'DevicesPage'}"><li><a>Устройства</a></li></router-link>
-                    <router-link :to="{ name: 'StatisticsPage'}"><li><a>Статистика</a></li></router-link>
+                    <router-link :to="{ name: 'DevicesPage'}" class=""><li><a :class="this.linkActive('devices')">Устройства</a></li></router-link>
+                    <router-link :to="{ name: 'StatisticsPage'}"><li><a :class="this.linkActive('statistics')">Статистика</a></li></router-link>
                 </ul>
             </div>
 
             <a class="font-semibold text-xl px-4">APIntegrator</a>
 
             <ul class="menu menu-horizontal px-1 hidden lg:flex space-x-2">
-                <router-link :to="{ name: 'DevicesPage'}"><li><a>Устройства</a></li></router-link>
-                <router-link :to="{ name: 'StatisticsPage'}"><li><a>Статистика</a></li></router-link>
+                <router-link :to="{ name: 'DevicesPage'}"><li><a :class="this.linkActive('devices')">Устройства</a></li></router-link>
+                <router-link :to="{ name: 'StatisticsPage'}"><li><a :class="this.linkActive('statistics')">Статистика</a></li></router-link>
             </ul>
         </div>
 
@@ -59,7 +59,9 @@ export default {
         }
     },
     methods: {
-
+        linkActive(link) {
+            return { activeLink: location.pathname.indexOf(link) !== -1 }
+        }
     },
     components: {
 
@@ -72,7 +74,7 @@ export default {
 </script>
 
 <style>
-a.router-link-active li a {
+a li a.activeLink {
     background-color: rgb(196 181 253);
 }
 </style>

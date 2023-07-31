@@ -99,8 +99,10 @@ export default {
             if (isFormCorrect) {
                 await this.storeDevice(this.newDeviceForm.data)
                     .then((response) => {
-                        this.proxyShow = false;
+                        this.closeModal();
                         this.$emit('succeedStoreDevice', response.password);
+                    }).finally(() => {
+                        this.newDeviceForm.processing = false;
                     });
             }
             this.newDeviceForm.processing = false;

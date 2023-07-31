@@ -16,7 +16,6 @@ export default {
     async loadDevice(state, deviceID) {
         return await devices.showDevice(deviceID)
             .then((response) => {
-                console.log(response);
                 state.commit('setDevice', response.data);
             })
             .catch((e) => {

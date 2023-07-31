@@ -7,10 +7,35 @@
             <div v-if="!devicesCount" class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                 Устройств не найдено
             </div>
-            <div v-for="device in this.getDevices" class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4 my-4">
-                <router-link :to="{ name: 'DevicePage', params: { deviceId: device.id }}">
-                    {{ device.name }}
-                </router-link>
+            <div v-for="device in this.getDevices" class="bg-white overflow-hidden shadow-sm sm:rounded-lg my-4">
+                <div class="flex flex-row">
+                    <div class="basis-52 border-grey-600 border-r-2 p-4">icon</div>
+                    <div class="basis-full">
+                        <div class="flex flex-row justify-between p-4 shadow">
+                            <div class="text-xl">
+                                <router-link :to="{ name: 'DevicePage', params: { deviceId: device.id }}">
+                                    {{ device.name }}
+                                </router-link>
+                            </div>
+                            <div>
+                                <div class="badge badge-info">
+                                    Online
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-row pr-4 pb-4 pl-1 pt-1">
+                            <div class="basis-1/2">
+                                <div>Последний запрос: 31.07.2023 15:40</div>
+                                <div class="mt-2">Ошибки:</div>
+                            </div>
+                            <div class="basis-1/2 flex items-end justify-end gap-2">
+                                <button class="btn btn-outline btn-error">Отключить</button>
+                                <button class="btn btn-outline btn-primary">Перезагрузить</button>
+                                <button class="btn btn-outline btn-neutral">Выгрузить данные</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

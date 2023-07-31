@@ -14,6 +14,7 @@ class Device extends Model
         'login',
         'name',
         'description',
+        'password'
     ];
 
     protected $hidden = [
