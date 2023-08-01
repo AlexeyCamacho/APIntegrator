@@ -16,7 +16,7 @@
             </p>
 
             <div class="mt-6 flex justify-end gap-2">
-                <button class="btn btn-active btn-neutral" @click="closeModal"> Закрыть </button>
+                <button class="btn btn-neutral" @click="closeModal"> Закрыть </button>
             </div>
         </div>
     </Modal>

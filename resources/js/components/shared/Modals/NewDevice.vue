@@ -21,7 +21,7 @@
             </form>
 
             <div class="mt-6 flex justify-end gap-2">
-                <button class="btn btn-active btn-neutral" @click="closeModal"> Отмена </button>
+                <button class="btn btn-neutral" @click="closeModal"> Отмена </button>
                 <button
                     class="btn btn-primary"
                     :class="{ 'opacity-25': this.newDeviceForm.processing }"
