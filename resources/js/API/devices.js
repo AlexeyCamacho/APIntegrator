@@ -11,4 +11,7 @@ export default {
     async storeDevice(device) {
         return axios.post(`${path}/`, device);
     },
+    async destroyDevice(deviceID) {
+        return axios.delete(`${path}/` + deviceID);
+    },
 }

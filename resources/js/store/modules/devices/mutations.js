@@ -7,6 +7,9 @@ export default {
     },
     pushDevice(state, device) {
         state.devices.unshift(device);
+    },
+    destroyDevice(state, deviceID) {
+
     }
 
 }

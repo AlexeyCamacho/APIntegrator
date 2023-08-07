@@ -4,7 +4,6 @@ namespace App\Actions\Devices;
 use Lorisleiva\Actions\Concerns\AsAction;
 use App\Models\Device;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
 use App\Actions\Permissions\StorePermission;
 
 class SetDeviceAdmin

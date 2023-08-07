@@ -11,6 +11,7 @@ export default {
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
+                throw e;
             });
     },
     async loadDevice(state, deviceID) {
@@ -20,6 +21,7 @@ export default {
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
+                throw e;
             });
     },
     async storeDevice(state, device) {
@@ -33,6 +35,19 @@ export default {
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
+                throw e;
+            });
+    },
+    async destroyDevice(state, deviceID) {
+        return await devices.destroyDevice(deviceID)
+            .then((response) => {
+                state.commit('destroyDevice', response.data.device);
+                toast.success('Устройство удалено');
+                return response.data;
+            })
+            .catch((e) => {
+                toast.error(e.response.data.message);
+                throw e;
             });
     }
 }

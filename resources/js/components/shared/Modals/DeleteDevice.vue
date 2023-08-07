@@ -39,7 +39,7 @@ export default {
         deviceName: String,
         deviceID: Number
     },
-    emits: ['update:show', 'succeedStoreDevice'],
+    emits: ['update:show', 'succeedDestroyDevice'],
     computed: {
         proxyShow: {
             get() {
@@ -62,21 +62,22 @@ export default {
     },
     methods: {
         ...mapActions([
-            'storeDevice'
+            'destroyDevice'
         ]),
         closeModal() {
             this.proxyShow = false;
         },
         async deleteDevice() {
+            this.deleteDeviceForm.data.id = this.deviceID;
             this.deleteDeviceForm.processing = true;
-            await this.storeDevice(this.deleteDeviceForm.data)
+            await this.destroyDevice(this.deleteDeviceForm.data.id)
                 .then((response) => {
-                    this.closeModal();
-                    this.$emit('succeedStoreDevice', response.password);
+                    this.$emit('succeedDestroyDevice');
                 }).finally(() => {
+                    this.closeModal();
                     this.deleteDeviceForm.processing = false;
                 });
-            this.deleteDeviceForm.processing = false;
+
         },
     },
 }

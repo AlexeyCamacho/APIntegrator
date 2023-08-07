@@ -46,7 +46,8 @@
         </div>
     </div>
 
-    <DeleteDeviceModal v-model:show="this.showDeviceDeviceModal" :deviceName="getDevice.name" :deviceID="getDevice.id"></DeleteDeviceModal>
+    <DeleteDeviceModal v-model:show="this.showDeviceDeviceModal" :deviceName="getDevice.name" :deviceID="getDevice.id"
+                       @succeed-Destroy-Device="this.$router.push({ name: 'DevicesPage' })"></DeleteDeviceModal>
 </template>
 
 <script>
