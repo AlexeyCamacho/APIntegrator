@@ -14,5 +14,4 @@ Route::middleware(['auth'])->group(function () {
 //    Route::get('/{id}/edit', 'edit')->name('devices.edit');
 //    Route::put('/{id}', 'update')->name('devices.update');
     Route::delete('/{id}', DestroyDevice::class)->name('devices.destroy');
-
 });

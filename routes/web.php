@@ -26,6 +26,6 @@ Route::any( '/{any}', function(){
 
 Route::prefix("api")->group(function () {
     Route::prefix("devices")->group(function () {
-        require __DIR__.'/devices.php';
+        require __DIR__ . '/web/devices.php';
     });
 });
