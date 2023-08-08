@@ -67,6 +67,5 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'last_access' => \App\Http\Middleware\UpdateLastAccess::class,
-        'check.login' => \App\Http\Middleware\CheckingDeviceByLogin::class,
     ];
 }

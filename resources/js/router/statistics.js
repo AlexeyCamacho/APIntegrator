@@ -1,4 +1,4 @@
-import StatisticsPage from "../pages/Statistics.vue";
+import StatisticsPage from "../pages/StatisticsPage.vue";
 
 export default [
     {
