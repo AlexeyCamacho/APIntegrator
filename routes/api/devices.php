@@ -5,6 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Actions\Devices\UpdateLastAccess;
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/', UpdateLastAccess::class)->name('devices.get');
+Route::middleware(['auth:api', 'last_access'])->group(function () {
+    Route::patch('/', UpdateLastAccess::class)->name('devices.updateLastAccess');
 });

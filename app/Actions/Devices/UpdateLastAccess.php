@@ -2,30 +2,22 @@
 
 namespace App\Actions\Devices;
 
-use App\Models\User;
-use Lorisleiva\Actions\ActionRequest;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class UpdateLastAccess
 {
     use AsAction;
 
-    public function handle(User $user, int $deviceID): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|null
+    public function handle(): \Illuminate\Http\JsonResponse
     {
-        return $user->devices()->find($deviceID);
+        return response()->json([
+            'state' => 'successfully',
+        ]);
     }
 
-    public function authorize(ActionRequest $request): bool
+    public function asController(): \Illuminate\Http\JsonResponse
     {
-        return $request->user()->devices()->where('id', $request->route('id'))->count();
-    }
-
-    public function asController(ActionRequest $request): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|null
-    {
-        return $this->handle(
-            $request->user(),
-            $request->route('id')
-        );
+        return $this->handle();
     }
 
     public function jsonResponse($data)
