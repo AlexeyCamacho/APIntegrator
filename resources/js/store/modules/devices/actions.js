@@ -41,7 +41,6 @@ export default {
     async destroyDevice(state, deviceID) {
         return await devices.destroyDevice(deviceID)
             .then((response) => {
-                state.commit('destroyDevice', response.data.device);
                 toast.success('Устройство удалено');
                 return response.data;
             })

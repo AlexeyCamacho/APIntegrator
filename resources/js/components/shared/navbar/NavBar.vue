@@ -37,12 +37,12 @@
                 <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                     <li>
                         <a class="justify-between">
-                            Profile
+                            Профиль
                             <span class="badge">New</span>
                         </a>
                     </li>
-                    <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
+                    <li><a>Настройки</a></li>
+                    <li><a>Выход</a></li>
                 </ul>
             </div>
         </div>

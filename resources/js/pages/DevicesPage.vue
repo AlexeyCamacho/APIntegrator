@@ -16,7 +16,7 @@
                 <DeviceItem :device="device"></DeviceItem>
             </div>
 
-            <div class="flex justify-center">
+            <div class="flex justify-center" v-if="this.pages > 1">
                 <div class="join">
                     <button class="join-item btn" @click="this.prevPage" :class="[this.page <= 1 ? 'btn-disabled' : '']">«</button>
                     <button class="join-item btn">{{ this.page }}</button>
@@ -89,6 +89,13 @@ export default {
         prevPage() {
             this.page -= 1;
         },
+    },
+    watch: {
+        search() {
+            if (this.page > this.pages && this.pages > 0) {
+                this.page = this.pages;
+            }
+        }
     },
     beforeMount() {
         this.loadDevices();
