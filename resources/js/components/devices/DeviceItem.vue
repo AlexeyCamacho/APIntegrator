@@ -3,7 +3,7 @@
         <div class="basis-52 border-grey-600 md:border-r-2 p-4 hidden md:block">icon</div>
         <div class="basis-full">
             <div class="sm:flex flex-row justify-between p-4 shadow">
-                <div class="text-xl">
+                <div class="text-xl hover:underline">
                     <router-link :to="{ name: 'DevicePage', params: { deviceId: this.device.id }}">
                         {{ this.device.name }}
                     </router-link>
