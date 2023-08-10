@@ -44,7 +44,7 @@ export default {
         },
     },
     beforeMount() {
-        this.loadDevice(this.$route.params.deviceId);
+        this.loadDevice(this.$route.params.deviceID);
     }
 }
 </script>

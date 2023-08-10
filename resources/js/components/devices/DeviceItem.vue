@@ -4,7 +4,7 @@
         <div class="basis-full">
             <div class="sm:flex flex-row justify-between p-4 shadow">
                 <div class="text-xl hover:underline">
-                    <router-link :to="{ name: 'DevicePage', params: { deviceId: this.device.id }}">
+                    <router-link :to="{ name: 'DevicePage', params: { deviceID: this.device.id }}">
                         {{ this.device.name }}
                     </router-link>
                 </div>

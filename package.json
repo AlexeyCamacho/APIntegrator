@@ -22,6 +22,8 @@
         "@vitejs/plugin-vue": "^4.2.3",
         "@vuelidate/core": "^2.0.2",
         "@vuelidate/validators": "^2.0.2",
+        "n": "^9.1.0",
+        "nth-check": "^2.1.1",
         "vue": "^3.2.36",
         "vue-axios": "^3.5.2",
         "vue-router": "^4.2.2",

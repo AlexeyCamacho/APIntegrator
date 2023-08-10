@@ -1,6 +1,9 @@
 <template>
-    <div class="px-1 text-xl">
-        {{ this.device.name }}
+    <div class="text-sm breadcrumbs">
+        <ul>
+            <li @click="this.$router.push({ name: 'DevicesPage'})"><a>Устройства</a></li>
+            <li class="text-xl">{{ this.device.name }}</li>
+        </ul>
     </div>
     <div class="bg-white overflow-hidden shadow-sm rounded-lg">
         <div class="flex flex-row border-b-2">
@@ -19,7 +22,7 @@
                         <div class="dropdown dropdown-left">
                             <label tabindex="0" class="btn m-1">...</label>
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Настройки</a></li>
+                                <li @click="this.$router.push({ name: 'DeviceSettings', params: { deviceID: this.device.id }})"><a>Настройки</a></li>
                                 <li @click="this.$emit('openDeleteDeviceModal')"><a>Удалить</a></li>
                             </ul>
                         </div>
