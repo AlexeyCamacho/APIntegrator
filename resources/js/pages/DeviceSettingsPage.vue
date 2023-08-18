@@ -11,6 +11,7 @@
             <VerticalNavigation>
                 <CategoryNav :title="'Основное'"></CategoryNav>
                 <LinkNav :title="'Данные устройства'" @click="this.selectTab('DataTab')" :active="this.currentTab === 'DataTab'"></LinkNav>
+                <LinkNav :title="'API'" @click="this.selectTab('APITab')" :active="this.currentTab === 'APITab'"></LinkNav>
                 <LinkNav :title="'Пользователи'" @click="this.selectTab('UsersTab')" :active="this.currentTab === 'UsersTab'"></LinkNav>
 
                 <CategoryNav :title="'Управление'"></CategoryNav>
@@ -19,9 +20,9 @@
                 <LinkNav :title="'Статистика'"></LinkNav>
                 <LinkNav :title="'Команды'"></LinkNav>
             </VerticalNavigation>
-            <div class="w-full" ref="tabs">
+            <div class="w-full p-4" ref="tabs">
                 <KeepAlive include="a,b">
-                    <component :is="this.currentTab" />
+                    <component :is="this.currentTab" :device="getDevice"/>
                 </KeepAlive>
             </div>
 
@@ -36,6 +37,7 @@ import LinkNav from "../components/shared/navbar/LinkNav.vue";
 import CategoryNav from "../components/shared/navbar/CategoryNav.vue";
 import DataTab from "../components/devices/settings/DataTab.vue";
 import UsersTab from "../components/devices/settings/UsersTab.vue";
+import APITab from "../components/devices/settings/APITab.vue";
 
 export default {
     components: {
@@ -43,7 +45,8 @@ export default {
         LinkNav,
         CategoryNav,
         DataTab,
-        UsersTab
+        UsersTab,
+        APITab
     },
     data() {
         return {

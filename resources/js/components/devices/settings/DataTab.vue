@@ -1,10 +1,14 @@
 <template>
-data
+    <div>
+        data
+    </div>
 </template>
 
 <script>
 export default {
-    name: "DataTab"
+    props: {
+        device: Object
+    }
 }
 </script>
 

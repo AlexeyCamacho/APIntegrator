@@ -48,5 +48,15 @@ export default {
                 toast.error(e.response.data.message);
                 throw e;
             });
+    },
+    async genNewDevicePassword(state, deviceID) {
+        return await devices.generateNewPassword(deviceID)
+            .then((response) => {
+                return response.data;
+            })
+            .catch((e) => {
+                toast.error(e.response.data.message);
+                throw e;
+            });
     }
 }

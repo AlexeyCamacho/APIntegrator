@@ -14,4 +14,7 @@ export default {
     async destroyDevice(deviceID) {
         return axios.delete(`${path}/` + deviceID);
     },
+    async generateNewPassword(deviceID) {
+        return axios.patch(`${path}/` + deviceID + '/password');
+    },
 }
