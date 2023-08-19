@@ -58,5 +58,19 @@ export default {
                 toast.error(e.response.data.message);
                 throw e;
             });
-    }
+    },
+    async updateDevice(state, device) {
+        return await devices.updateDevice(device.id, device.data)
+            .then((response) => {
+                state.commit('setDevice', response.data);
+                toast.success('Настройки сохранены',{
+                    position: POSITION.BOTTOM_RIGHT
+                });
+                return response.data;
+            })
+            .catch((e) => {
+                toast.error(e.response.data.message);
+                throw e;
+            });
+    },
 }

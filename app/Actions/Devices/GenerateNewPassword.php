@@ -1,6 +1,7 @@
 <?php
 namespace App\Actions\Devices;
 
+use Illuminate\Support\Str;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use App\Models\Device;
@@ -10,11 +11,19 @@ class GenerateNewPassword
 {
     use AsAction;
 
-    public function handle(int $deviceID): ?bool
+    public function handle(int $deviceID): bool|string
     {
         $device = Device::find($deviceID);
 
-        return $device->delete();
+        if ($device) {
+            $password = Str::password();
+            $device->password = $password;
+            $device->save();
+
+            return $password;
+        }
+
+        return false;
     }
 
     public function getControllerMiddleware(ActionRequest $request): array
@@ -22,7 +31,7 @@ class GenerateNewPassword
         return ['permission:devices.generatePassword.' . $request->route('id')];
     }
 
-    public function asController(ActionRequest $request)
+    public function asController(ActionRequest $request): bool|string
     {
         return $this->handle(
             $request->route('id')

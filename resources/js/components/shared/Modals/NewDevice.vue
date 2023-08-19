@@ -36,11 +36,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import Modal from './Modal.vue';
 import { useVuelidate } from '@vuelidate/core'
-import { required, minLength, requiredIf } from '@vuelidate/validators'
+import { required, minLength } from '@vuelidate/validators'
 import ErrorsMessage from "../ErrorsMessage.vue";
+
 export default {
     components: {
         Modal,

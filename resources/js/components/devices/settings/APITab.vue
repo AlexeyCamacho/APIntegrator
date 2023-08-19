@@ -4,12 +4,13 @@
         <p class="mb-3">Логин: {{ device.login }}</p>
 
         <div class="collapse bg-base-200">
-            <input type="checkbox" class="peer w-full" />
-            <div class="collapse-title bg-warning text-warning-content peer-checked:bg-error peer-checked:text-error-content">
-                Сгенерировать новый пароль
+            <input type="checkbox" class="peer w-full" v-model="this.showCollapse"/>
+            <div class="collapse-title bg-warning text-warning-content peer-checked:bg-error peer-checked:text-error-content text-center">
+                <ChevronDoubleRightIcon class="w-6 h-6 ml-2 cursor-pointer self-center inline"></ChevronDoubleRightIcon>
+                <span class="align-middle">Сгенерировать новый пароль</span>
             </div>
-            <div class="collapse-content bg-warning text-warning-content peer-checked:bg-error peer-checked:text-error-content">
-                <button class="btn btn-warning" @click="this.generateNewPassword">Сгенерировать новый пароль</button>
+            <div class="collapse-content bg-warning text-warning-content peer-checked:bg-error peer-checked:text-error-content text-center">
+                <button class="btn btn-warning self-center" @click="this.generateNewPassword">Сгенерировать новый пароль</button>
             </div>
         </div>
 
@@ -20,27 +21,37 @@
 
 <script>
 import ViewDevicePasswordModal from "../../shared/Modals/ViewDevicePassword.vue";
+import { ChevronDoubleRightIcon } from '@heroicons/vue/24/outline'
 import {mapActions} from "vuex";
+import ErrorsMessage from "../../shared/ErrorsMessage.vue";
 
 export default {
     components: {
-        ViewDevicePasswordModal
+        ViewDevicePasswordModal,
+        ChevronDoubleRightIcon,
+        ErrorsMessage
     },
     props: {
         device: Object,
-        deviceKey: '',
     },
     data() {
         return {
-            showViewPasswordDeviceModal: false
+            showViewPasswordDeviceModal: false,
+            deviceKey: '',
+            showCollapse: false,
         }
     },
     methods: {
         ...mapActions([
             'genNewDevicePassword'
         ]),
-        generateNewPassword() {
-            this.genNewDevicePassword(this.device.id);
+        async generateNewPassword() {
+            await this.genNewDevicePassword(this.device.id)
+                .then((response) => {
+                    this.deviceKey = response;
+                    this.showViewPasswordDeviceModal = true;
+                    this.showCollapse = false;
+                });
         }
     },
 }

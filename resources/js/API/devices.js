@@ -17,4 +17,7 @@ export default {
     async generateNewPassword(deviceID) {
         return axios.patch(`${path}/` + deviceID + '/password');
     },
+    async updateDevice(deviceID, device) {
+        return axios.put(`${path}/` + deviceID, device);
+    },
 }
