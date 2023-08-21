@@ -15,10 +15,10 @@
                 <LinkNav :title="'Пользователи'" @click="this.selectTab('UsersTab')" :active="this.currentTab === 'UsersTab'"></LinkNav>
 
                 <CategoryNav :title="'Управление'"></CategoryNav>
-                <LinkNav :title="'Ошибки'"></LinkNav>
-                <LinkNav :title="'Состояния'"></LinkNav>
-                <LinkNav :title="'Статистика'"></LinkNav>
-                <LinkNav :title="'Команды'"></LinkNav>
+                <LinkNav :title="'Ошибки'" @click="this.selectTab('APIErrorsTab')" :active="this.currentTab === 'APIErrorsTab'"></LinkNav>
+                <LinkNav :title="'Состояния'" @click="this.selectTab('APIStatusesTab')" :active="this.currentTab === 'APIStatusesTab'"></LinkNav>
+                <LinkNav :title="'Статистика'" @click="this.selectTab('APIStatsTab')" :active="this.currentTab === 'APIStatsTab'"></LinkNav>
+                <LinkNav :title="'Команды'" @click="this.selectTab('APICommandsTab')" :active="this.currentTab === 'APICommandsTab'"></LinkNav>
             </VerticalNavigation>
             <div class="w-full p-4" ref="tabs">
                 <KeepAlive include="a,b">
@@ -38,6 +38,10 @@ import CategoryNav from "../components/shared/navbar/CategoryNav.vue";
 import DataTab from "../components/devices/settings/DataTab.vue";
 import UsersTab from "../components/devices/settings/UsersTab.vue";
 import APITab from "../components/devices/settings/APITab.vue";
+import APIErrorsTab from "../components/devices/settings/APIErrorsTab.vue";
+import APICommandsTab from "../components/devices/settings/APICommandsTab.vue";
+import APIStatusesTab from "../components/devices/settings/APIStatusesTab.vue";
+import APIStatsTab from "../components/devices/settings/APIStatsTab.vue";
 
 export default {
     components: {
@@ -46,11 +50,15 @@ export default {
         CategoryNav,
         DataTab,
         UsersTab,
-        APITab
+        APITab,
+        APIErrorsTab,
+        APICommandsTab,
+        APIStatusesTab,
+        APIStatsTab
     },
     data() {
         return {
-            tabs: ['DataTab', 'UsersTab'],
+            tabs: ['DataTab', 'UsersTab', 'APIErrorsTab', 'APICommandsTab', 'APIStatusesTab', 'APIStatsTab'],
             currentTab: 'DataTab'
         }
     },
@@ -61,7 +69,8 @@ export default {
     },
     methods: {
         ...mapActions([
-            'loadDevice'
+            'loadDevice',
+            'loadErrors'
         ]),
         selectTab(tabName) {
             this.currentTab = tabName;
@@ -69,6 +78,7 @@ export default {
     },
     beforeMount() {
         this.loadDevice(this.$route.params.deviceID);
+        this.loadErrors(this.$route.params.deviceID);
     }
 }
 </script>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Device extends Model
 {
@@ -37,5 +38,10 @@ class Device extends Model
     public function validateForPassportPasswordGrant(string $password): bool
     {
         return Hash::check($password, $this->password);
+    }
+
+    public function errors(): MorphMany
+    {
+        return $this->morphMany(Error::class, 'errortable');
     }
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('errors', function (Blueprint $table) {
             $table->id();
+            $table->string('errortable_type');
+            $table->integer('errortable_id');
             $table->string('name');
             $table->integer('color');
             $table->integer('priority');

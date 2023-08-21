@@ -3,8 +3,7 @@ import getters from './getters';
 import mutations from './mutations';
 
 const state = {
-    devices: [],
-    device: {},
+    errors: [],
 }
 
 export default {

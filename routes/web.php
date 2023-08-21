@@ -28,4 +28,7 @@ Route::prefix("api")->group(function () {
     Route::prefix("devices")->group(function () {
         require __DIR__ . '/web/devices.php';
     });
+    Route::prefix("errors")->group(function () {
+        require __DIR__ . '/web/errors.php';
+    });
 });
