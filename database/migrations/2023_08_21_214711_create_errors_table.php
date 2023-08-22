@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('errortable_type');
             $table->integer('errortable_id');
             $table->string('name');
-            $table->integer('color');
+            $table->string('color');
             $table->integer('priority');
             $table->timestamps();
         });

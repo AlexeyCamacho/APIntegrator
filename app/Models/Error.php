@@ -10,6 +10,12 @@ class Error extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'priority',
+        'color'
+    ];
+
     public function errortable(): MorphTo
     {
         return $this->morphTo();
