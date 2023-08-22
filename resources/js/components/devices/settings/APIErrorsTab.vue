@@ -1,6 +1,6 @@
 <template>
     <div v-if="this.getErrors.length">
-        {{ this.getErrors }}
+        <template v-for="error in this.getErrors"><Error :error="error"></Error></template>
     </div>
     <div v-else>
         <p>Устройство не поддерживает ошибки. Добавьте новую или используйте шаблон.</p>
@@ -14,13 +14,14 @@
 </template>
 
 <script>
-
 import {mapActions, mapGetters} from "vuex";
 import NewErrorForm from "../../shared/errors/NewErrorForm.vue";
+import Error from "../../shared/errors/Error.vue";
 
 export default {
     components: {
-        NewErrorForm
+        NewErrorForm,
+        Error
     },
     props: {
         device: Object

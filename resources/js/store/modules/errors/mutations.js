@@ -3,6 +3,6 @@ export default {
         state.errors = errors;
     },
     pushError(state, error) {
-        state.errors.unshift(error);
+        state.errors.push(error);
     },
 }
