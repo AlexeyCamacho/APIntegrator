@@ -10,6 +10,29 @@ export default {
         './resources/js/**/*.vue',
     ],
 
+    safelist: [
+        'badge-primary',
+        'badge-neutral',
+        'badge-info',
+        'badge-success',
+        'badge-warning',
+        'badge-error',
+
+        'bg-primary',
+        'bg-neutral',
+        'bg-info',
+        'bg-success',
+        'bg-warning',
+        'bg-error',
+
+        'text-primary-content',
+        'text-neutral-content',
+        'text-info-content',
+        'text-success-content',
+        'text-warning-content',
+        'text-error-content',
+    ],
+
     theme: {
         extend: {
             fontFamily: {

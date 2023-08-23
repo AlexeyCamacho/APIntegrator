@@ -12,7 +12,6 @@ export default {
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
-                throw e;
             });
     },
     async storeError(state, form) {
@@ -23,7 +22,17 @@ export default {
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
-                throw e;
+            });
+    },
+    async destroyError(state, errorID) {
+        return await errors.destroyError(errorID)
+            .then((response) => {
+                toast.success('Ошибка удалена');
+                state.commit('deleteError', response.data);
+                return response.data;
+            })
+            .catch((e) => {
+                toast.error(e.response.data.message);
             });
     },
 }

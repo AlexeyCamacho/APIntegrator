@@ -2,10 +2,13 @@ let path = '/api/errors'
 import axios from 'axios'
 
 export default {
-    async loadErrors(deviceID) {
-        return axios.get(`${path}/` + deviceID);
+    async loadErrors(errorID) {
+        return axios.get(`${path}/` + errorID);
     },
-    async storeError(deviceID, data) {
-        return axios.post(`${path}/` + deviceID, data);
+    async storeError(errorID, data) {
+        return axios.post(`${path}/` + errorID, data);
+    },
+    async destroyError(errorID) {
+        return axios.delete(`${path}/` + errorID);
     },
 }

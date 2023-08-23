@@ -5,4 +5,10 @@ export default {
     pushError(state, error) {
         state.errors.push(error);
     },
+    deleteError(state, errorID) {
+        let errors = state.errors;
+        let index = errors.findIndex(p => p.id === errorID);
+        errors.splice(index, 1);
+        state.errors = errors;
+    },
 }

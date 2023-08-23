@@ -17,7 +17,8 @@
             <label class="label" for="name">
                 <span class="label-text">Цвет</span>
             </label>
-            <select class="select select-bordered w-full max-w-xs py-0 h-8 min-h-8" :class="'bg-' + this.newErrorForm.data.color"
+            <select class="select select-bordered w-full max-w-xs py-0 h-8 min-h-8"
+                    :class="['bg-' + this.newErrorForm.data.color, 'text-' + this.newErrorForm.data.color + '-content']"
                     v-model="this.newErrorForm.data.color">
                 <option v-for="color in this.getColors" :class="['bg-' + color, 'text-' + color + '-content']">{{color}}</option>
             </select>
@@ -32,8 +33,6 @@
             </div>
         </div>
     </div>
-    <div class="hidden bg-error bg-warning bg-success bg-info bg-neutral bg-accent bg-secondary bg-primary"></div>
-    <div class="hidden text-error-content text-warning-content text-success-content text-info-content text-neutral-content text-accent-content text-secondary-content text-primary-content"></div>
 </template>
 
 <script>
@@ -94,7 +93,7 @@ export default {
             this.newErrorForm.data.color = 'info';
             this.newErrorForm.data.priority = 1;
             this.v$.$reset();
-            this.$emit('closeForm')
+            this.$emit('closeForm');
         },
         async newError() {
             this.newErrorForm.processing = true;
@@ -103,7 +102,7 @@ export default {
                 await this.storeError({deviceID: this.deviceID, data: this.newErrorForm.data})
                     .then((response) => {
                         this.hideFormNewError();
-                        this.$emit('closeForm')
+                        this.$emit('closeForm');
                     }).finally(() => {
                         this.newErrorForm.processing = false;
                     });

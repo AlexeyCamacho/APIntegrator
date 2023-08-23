@@ -1,6 +1,9 @@
 <template>
-    <div v-if="this.getErrors.length">
-        <template v-for="error in this.getErrors"><Error :error="error"></Error></template>
+    <div v-if="this.getErrorsByCreate.length">
+        <div class="mb-2" >Список доступных ошибок:</div>
+        <template v-for="error in this.getErrorsByCreate">
+            <Error :error="error" :settings-page="true" @device-Delete="clearFocus"></Error>
+        </template>
     </div>
     <div v-else>
         <p>Устройство не поддерживает ошибки. Добавьте новую или используйте шаблон.</p>
@@ -17,12 +20,14 @@
 import {mapActions, mapGetters} from "vuex";
 import NewErrorForm from "../../shared/errors/NewErrorForm.vue";
 import Error from "../../shared/errors/Error.vue";
+import clearFocus from "../../mixins/clearFocus.js";
 
 export default {
     components: {
         NewErrorForm,
         Error
     },
+    mixins: [clearFocus],
     props: {
         device: Object
     },
@@ -33,7 +38,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getErrors',
+            'getErrorsByCreate',
             'getColors'
         ]),
     },
