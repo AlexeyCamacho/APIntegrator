@@ -5,13 +5,13 @@ use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use App\Models\Device;
 
-class  CreateActiveErrors
+class  SyncActiveErrors
 {
     use AsAction;
 
     public function handle(Device $device, array $errors): \Illuminate\Http\JsonResponse
     {
-        $device->activeErrors()->syncWithPivotValues($errors, ['updated_at' => now()], false);
+        $device->activeErrors()->syncWithPivotValues($errors, ['updated_at' => now()]);
 
         return response()->json([
             'state' => 'successfully',
