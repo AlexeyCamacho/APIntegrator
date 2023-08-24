@@ -15,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix("v1")->group(function () {
-    require __DIR__ . '/api/devices.php';
+    Route::prefix("devices")->group(function () {
+        require __DIR__ . '/api/devices.php';
+    });
+
+    Route::prefix("errors")->group(function () {
+        require __DIR__ . '/api/errors.php';
+    });
 });

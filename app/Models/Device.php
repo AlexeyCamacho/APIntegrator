@@ -44,4 +44,9 @@ class Device extends Model
     {
         return $this->morphMany(Error::class, 'errortable');
     }
+
+    public function activeErrors(): BelongsToMany
+    {
+        return $this->belongsToMany(Error::class)->withTimestamps();
+    }
 }

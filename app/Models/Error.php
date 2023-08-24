@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Error extends Model
 {
@@ -19,5 +20,10 @@ class Error extends Model
     public function errortable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    public function activeDevices(): BelongsToMany
+    {
+        return $this->belongsToMany(Device::class)->withTimestamps();
     }
 }
