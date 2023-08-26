@@ -18,6 +18,7 @@ export default {
         return await devices.showDevice(deviceID)
             .then((response) => {
                 state.commit('setDevice', response.data);
+                state.commit('setActiveErrors', response.data.active_errors);
             })
             .catch((e) => {
                 toast.error(e.response.data.message);

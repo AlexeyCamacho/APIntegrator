@@ -12,7 +12,7 @@ class ShowDevice
 
     public function handle(User $user, int $deviceID): \Illuminate\Database\Eloquent\Model|\Illuminate\Database\Eloquent\Collection|null
     {
-        return $user->devices()->find($deviceID);
+        return $user->devices()->with('activeErrors')->find($deviceID);
     }
 
     public function authorize(ActionRequest $request): bool

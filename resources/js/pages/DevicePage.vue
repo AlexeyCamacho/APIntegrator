@@ -32,7 +32,7 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'getDevice',
+            'getDevice'
         ]),
     },
     methods: {

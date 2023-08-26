@@ -35,11 +35,22 @@
                 </div>
             </div>
         </div>
-        <div class="p-4">
+        <div class="p-4" v-if="this.device.description">
             <p class="text-sm">{{ this.device.description }}</p>
         </div>
         <div class="flex flex-row p-4 justify-between">
-            <div>Ошибки</div>
+            <div>
+                <div v-if="this.getActiveErrorsByPriority.length">
+                    <p>Ошибки:</p>
+                    <template v-for="error in this.getActiveErrorsByPriority">
+                        <Error :error="error" :settings-page="false"></Error>
+                    </template>
+                </div>
+                <div class="alert alert-success p-2" v-else>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <span>Ошибок не найдено.</span>
+                </div>
+            </div>
             <div>Кнопки</div>
         </div>
         <div class="flex flex-col p-4">Статистика</div>
@@ -48,13 +59,24 @@
 
 <script>
 import checkOnline from "../mixins/CheckOnline.js";
+import {mapGetters} from "vuex";
+import Error from "../shared/errors/Error.vue";
 
 export default {
+    components: {
+        Error
+    },
     mixins: [checkOnline],
     props: {
         device: Object
     },
     emits: ['openDeleteDeviceModal'],
+    computed: {
+        ...mapGetters([
+            'getActiveErrorsByPriority',
+        ]),
+    },
+
 }
 </script>
 

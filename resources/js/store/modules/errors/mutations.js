@@ -11,4 +11,7 @@ export default {
         errors.splice(index, 1);
         state.errors = errors;
     },
+    setActiveErrors(state, errors) {
+        state.activeErrors = errors;
+    },
 }

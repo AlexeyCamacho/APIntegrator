@@ -11,7 +11,7 @@ class GetDevices
 
     public function handle(User $user): \Illuminate\Database\Eloquent\Collection
     {
-        return $user->devices()->get();
+        return $user->devices()->with('activeErrors')->get();
     }
 
     public function getControllerMiddleware(): array

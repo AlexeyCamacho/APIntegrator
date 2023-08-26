@@ -7,4 +7,9 @@ export default {
         errors.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
         return errors;
     },
+    getActiveErrorsByPriority: state => {
+        let errors = state.activeErrors;
+        errors.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority));
+        return errors;
+    },
 }
