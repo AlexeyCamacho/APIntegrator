@@ -1,6 +1,7 @@
 <template>
     <div>
         <span class="mr-2" v-show="this.settingsPage">ID{{ error.id }}</span>
+        <span class="mr-2" v-show="this.settingsPage">Приоритет: {{ error.priority }}</span>
         <span class="badge font-medium" :class="'badge-' + error.color">{{ error.name }}</span>
         <div class="dropdown dropdown-top m-1 ml-4" v-show="this.settingsPage">
             <label tabindex="0" class="btn !btn-xs"><XMarkIcon class="h-3 w-3"></XMarkIcon></label>
