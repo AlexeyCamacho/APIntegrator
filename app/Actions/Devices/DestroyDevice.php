@@ -4,7 +4,7 @@ namespace App\Actions\Devices;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\ActionRequest;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
+use App\Actions\Permissions\DeletePermissionByDevice;
 
 class DestroyDevice
 {
@@ -14,9 +14,7 @@ class DestroyDevice
     {
         $device = $user->devices()->find($deviceID);
 
-        foreach (Permission::where('name', 'like', 'devices.%.' . $deviceID)->get() as $permission) {
-            $permission->delete();
-        }
+        DeletePermissionByDevice::run($deviceID);
 
         return $device->delete();
     }
