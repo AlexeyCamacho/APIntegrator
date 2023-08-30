@@ -66,7 +66,6 @@ export default {
     },
     data() {
         return {
-            showNewError: false,
             newErrorForm: {
                 data: {
                     name: '',
@@ -88,12 +87,10 @@ export default {
             'storeError'
         ]),
         hideFormNewError() {
-            this.showNewError = false;
             this.newErrorForm.data.name = '';
             this.newErrorForm.data.color = 'info';
             this.newErrorForm.data.priority = 1;
             this.v$.$reset();
-            this.$emit('closeForm');
         },
         async newError() {
             this.newErrorForm.processing = true;

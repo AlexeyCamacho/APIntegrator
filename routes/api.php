@@ -22,4 +22,8 @@ Route::prefix("v1")->group(function () {
     Route::prefix("errors")->group(function () {
         require __DIR__ . '/api/errors.php';
     });
+
+    Route::prefix("statuses")->group(function () {
+        require __DIR__ . '/api/statuses.php';
+    });
 });

@@ -2,7 +2,7 @@
     <div v-if="this.getErrorsByCreate.length">
         <div class="mb-2" >Список доступных ошибок:</div>
         <template v-for="error in this.getErrorsByCreate">
-            <Error :error="error" :settings-page="true" @device-Delete="clearFocus"></Error>
+            <Error :error="error" :settings-page="true" @error-Delete="clearFocus"></Error>
         </template>
     </div>
     <div v-else>

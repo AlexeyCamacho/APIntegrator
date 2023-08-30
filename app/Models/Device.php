@@ -49,4 +49,14 @@ class Device extends Model
     {
         return $this->belongsToMany(Error::class)->withTimestamps();
     }
+
+    public function statuses(): MorphMany
+    {
+        return $this->morphMany(Status::class, 'statustable');
+    }
+
+    public function activeStatuses(): BelongsToMany
+    {
+        return $this->belongsToMany(Error::class)->withTimestamps();
+    }
 }

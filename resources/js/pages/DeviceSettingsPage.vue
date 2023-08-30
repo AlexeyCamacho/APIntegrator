@@ -70,7 +70,8 @@ export default {
     methods: {
         ...mapActions([
             'loadDevice',
-            'loadErrors'
+            'loadErrors',
+            'loadStatuses'
         ]),
         selectTab(tabName) {
             this.currentTab = tabName;
@@ -79,6 +80,7 @@ export default {
     beforeMount() {
         this.loadDevice(this.$route.params.deviceID);
         this.loadErrors(this.$route.params.deviceID);
+        this.loadStatuses(this.$route.params.deviceID);
     }
 }
 </script>

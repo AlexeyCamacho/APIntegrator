@@ -1,33 +1,33 @@
-import errors from '../../../API/errors.js';
+import statuses from '../../../API/statuses.js';
 import { useToast } from 'vue-toastification';
 
 const toast = useToast();
 
 export default {
-    async loadErrors(state, deviceID) {
-        return await errors.loadErrors(deviceID)
+    async loadStatuses(state, deviceID) {
+        return await statuses.loadStatuses(deviceID)
             .then((response) => {
-                state.commit('setErrors', response.data);
+                state.commit('setStatuses', response.data);
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
             });
     },
-    async storeError(state, form) {
-        return await errors.storeError(form.deviceID, form.data)
+    async storeStatus(state, form) {
+        return await statuses.storeStatus(form.deviceID, form.data)
             .then((response) => {
-                state.commit('pushError', response.data);
+                state.commit('pushStatus', response.data);
                 return response.data;
             })
             .catch((e) => {
                 toast.error(e.response.data.message);
             });
     },
-    async destroyError(state, errorID) {
-        return await errors.destroyError(errorID)
+    async destroyStatus(state, statusID) {
+        return await statuses.destroyStatus(statusID)
             .then((response) => {
-                toast.success('Ошибка удалена');
-                state.commit('deleteError', response.data);
+                toast.success('Статус удален');
+                state.commit('deleteStatus', response.data);
                 return response.data;
             })
             .catch((e) => {
