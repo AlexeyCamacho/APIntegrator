@@ -57,6 +57,6 @@ class Device extends Model
 
     public function activeStatuses(): BelongsToMany
     {
-        return $this->belongsToMany(Error::class)->withTimestamps();
+        return $this->belongsToMany(Status::class)->withTimestamps();
     }
 }

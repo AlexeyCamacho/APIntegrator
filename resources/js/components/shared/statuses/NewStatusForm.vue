@@ -85,6 +85,7 @@ export default {
             this.newStatusForm.data.name = '';
             this.newStatusForm.data.color = 'info';
             this.v$.$reset();
+            this.$emit('closeForm');
         },
         async newStatus() {
             this.newStatusForm.processing = true;

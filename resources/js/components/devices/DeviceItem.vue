@@ -8,12 +8,15 @@
                         {{ this.device.name }}
                     </router-link>
                 </div>
-                <div>
-                    <div class="badge badge-info" v-if="checkOnline(this.device.last_access, 10)">
-                        Online
+                <div class="flex gap-2">
+                    <template v-for="status in this.getDeviceStatuses">
+                        <Status :status="status" :settings-page="false"></Status>
+                    </template>
+                    <div v-if="checkOnline(this.device.last_access, 10)">
+                        <span class="badge badge-info font-semibold">Online</span>
                     </div>
-                    <div class="badge badge-error" v-else>
-                        Offline
+                    <div v-else>
+                        <span class="badge badge-error font-semibold">Offline</span>
                     </div>
                 </div>
             </div>
@@ -24,7 +27,7 @@
                         <template v-else> запросы не обнаружены</template>
                     </div>
                     <div class="mt-2">
-                        <div v-if="this.device.active_errors.length">
+                        <div v-if="this.device.active_errors.length" class="flex flex-col gap-1">
                             <p>Ошибки:</p>
                             <template v-for="error in this.getDeviceErrorsByPriority">
                                 <Error :error="error" :settings-page="false"></Error>
@@ -49,10 +52,12 @@
 <script>
 import checkOnline from "../mixins/CheckOnline.js";
 import Error from "../shared/errors/Error.vue";
+import Status from "../shared/statuses/Status.vue";
 
 export default {
     components: {
         Error,
+        Status
     },
     mixins: [checkOnline],
     props: {
@@ -61,6 +66,9 @@ export default {
     computed: {
         getDeviceErrorsByPriority() {
             return this.device.active_errors.sort((a, b) => parseFloat(b.priority) - parseFloat(a.priority)).slice(0, 3);
+        },
+        getDeviceStatuses() {
+            return this.device.active_statuses.sort((a, b) => parseFloat(b.id) - parseFloat(a.id)).slice(0, 3);
         }
     }
 }

@@ -12,11 +12,16 @@
             </div>
             <div class="p-4 w-full">
                 <div class="flex flex-row justify-between">
-                    <div class="badge badge-info" v-if="checkOnline(this.device.last_access, 10)">
-                        Online
-                    </div>
-                    <div class="badge badge-error" v-else>
-                        Offline
+                    <div class="flex gap-2">
+                        <div v-if="checkOnline(this.device.last_access, 10)">
+                            <span class="badge badge-info font-semibold">Online</span>
+                        </div>
+                        <div v-else>
+                            <span class="badge badge-error font-semibold">Offline</span>
+                        </div>
+                        <template v-for="status in this.getActiveStatuses">
+                            <Status :status="status" :settings-page="false"></Status>
+                        </template>
                     </div>
                     <div>
                         <div class="dropdown dropdown-left">
@@ -61,10 +66,12 @@
 import checkOnline from "../mixins/CheckOnline.js";
 import {mapGetters} from "vuex";
 import Error from "../shared/errors/Error.vue";
+import Status from "../shared/statuses/Status.vue";
 
 export default {
     components: {
-        Error
+        Error,
+        Status
     },
     mixins: [checkOnline],
     props: {
@@ -74,6 +81,7 @@ export default {
     computed: {
         ...mapGetters([
             'getActiveErrorsByPriority',
+            'getActiveStatuses'
         ]),
     },
 

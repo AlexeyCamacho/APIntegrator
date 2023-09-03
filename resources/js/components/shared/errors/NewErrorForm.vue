@@ -91,6 +91,7 @@ export default {
             this.newErrorForm.data.color = 'info';
             this.newErrorForm.data.priority = 1;
             this.v$.$reset();
+            this.$emit('closeForm');
         },
         async newError() {
             this.newErrorForm.processing = true;

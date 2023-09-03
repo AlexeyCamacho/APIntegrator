@@ -68,5 +68,6 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'last_access' => \App\Http\Middleware\UpdateLastAccess::class,
         'containsErrors' => \App\Http\Middleware\DeviceConstainsErrors::class,
+        'containsStatuses' => \App\Http\Middleware\DeviceConstainsStatuses::class,
     ];
 }
