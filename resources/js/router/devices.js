@@ -14,6 +14,8 @@ export default [
         name: 'DevicePage',
     },
     {
-        path: '/devices/:deviceID/settings', component: DeviceSettingsPage, name: 'DeviceSettings',
+        path: '/devices/:deviceID/settings',
+        component: DeviceSettingsPage,
+        name: 'DeviceSettings',
     },
 ]

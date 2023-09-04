@@ -98,7 +98,7 @@ export default {
             let isFormCorrect = await this.v$.$validate()
             if (isFormCorrect) {
                 await this.storeError({deviceID: this.deviceID, data: this.newErrorForm.data})
-                    .then((response) => {
+                    .then(() => {
                         this.hideFormNewError();
                         this.$emit('closeForm');
                     }).finally(() => {

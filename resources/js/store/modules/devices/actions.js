@@ -17,7 +17,6 @@ export default {
     async loadDevice(state, deviceID) {
         return await devices.showDevice(deviceID)
             .then((response) => {
-                console.log(response.data);
                 state.commit('setDevice', response.data);
                 state.commit('setActiveErrors', response.data.active_errors);
                 state.commit('setActiveStatuses', response.data.active_statuses);

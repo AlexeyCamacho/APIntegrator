@@ -36,4 +36,8 @@ Route::prefix("api")->group(function () {
     Route::prefix("statuses")->group(function () {
         require __DIR__ . '/web/statuses.php';
     });
+
+    Route::prefix("user")->group(function () {
+        require __DIR__ . '/web/user.php';
+    });
 });

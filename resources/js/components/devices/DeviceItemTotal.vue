@@ -23,12 +23,12 @@
                             <Status :status="status" :settings-page="false"></Status>
                         </template>
                     </div>
-                    <div>
+                    <div v-if="this.checkDeviceOperator(this.device.id)">
                         <div class="dropdown dropdown-left">
                             <label tabindex="0" class="btn m-1">...</label>
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                 <li @click="this.$router.push({ name: 'DeviceSettings', params: { deviceID: this.device.id }})"><a>Настройки</a></li>
-                                <li @click="this.$emit('openDeleteDeviceModal')"><a>Удалить</a></li>
+                                <li @click="this.$emit('openDeleteDeviceModal')" v-if="this.checkDeviceAdmin(this.device.id)"><a>Удалить</a></li>
                             </ul>
                         </div>
                     </div>
@@ -67,13 +67,14 @@ import checkOnline from "../mixins/CheckOnline.js";
 import {mapGetters} from "vuex";
 import Error from "../shared/errors/Error.vue";
 import Status from "../shared/statuses/Status.vue";
+import checkPermissions from "../mixins/checkPermissions.js";
 
 export default {
     components: {
         Error,
         Status
     },
-    mixins: [checkOnline],
+    mixins: [checkOnline, checkPermissions],
     props: {
         device: Object
     },
@@ -81,10 +82,9 @@ export default {
     computed: {
         ...mapGetters([
             'getActiveErrorsByPriority',
-            'getActiveStatuses'
+            'getActiveStatuses',
         ]),
     },
-
 }
 </script>
 

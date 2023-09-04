@@ -7,10 +7,19 @@
 
 <script>
 import NavBar from "./components/shared/navbar/NavBar.vue";
+import { mapActions } from 'vuex'
 
 export default {
     components: {
         NavBar: NavBar
+    },
+    methods: {
+        ...mapActions([
+            'loadUser'
+        ])
+    },
+    beforeMount() {
+        this.loadUser();
     }
 }
 </script>

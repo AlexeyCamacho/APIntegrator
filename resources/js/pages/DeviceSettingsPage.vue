@@ -42,6 +42,7 @@ import APIErrorsTab from "../components/devices/settings/APIErrorsTab.vue";
 import APICommandsTab from "../components/devices/settings/APICommandsTab.vue";
 import APIStatusesTab from "../components/devices/settings/APIStatusesTab.vue";
 import APIStatsTab from "../components/devices/settings/APIStatsTab.vue";
+import checkPermissions from "../components/mixins/checkPermissions.js";
 
 export default {
     components: {
@@ -56,6 +57,7 @@ export default {
         APIStatusesTab,
         APIStatsTab
     },
+    mixins: [checkPermissions],
     data() {
         return {
             tabs: ['DataTab', 'UsersTab', 'APIErrorsTab', 'APICommandsTab', 'APIStatusesTab', 'APIStatsTab'],
@@ -81,7 +83,11 @@ export default {
         this.loadDevice(this.$route.params.deviceID);
         this.loadErrors(this.$route.params.deviceID);
         this.loadStatuses(this.$route.params.deviceID);
-    }
+
+        if (!this.checkDeviceOperator(this.$route.params.deviceID)) {
+            this.$router.push({name: 'DevicesPage'});
+        }
+    },
 }
 </script>
 
