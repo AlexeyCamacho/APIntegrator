@@ -12,12 +12,7 @@
                     <template v-for="status in this.getDeviceStatuses">
                         <Status :status="status" :settings-page="false"></Status>
                     </template>
-                    <div v-if="checkOnline(this.device.last_access, 10)">
-                        <span class="badge badge-info font-semibold">Online</span>
-                    </div>
-                    <div v-else>
-                        <span class="badge badge-error font-semibold">Offline</span>
-                    </div>
+                    <OnlineOfflineStatus :online="this.checkOnline(this.device.last_access, 10)"></OnlineOfflineStatus>
                 </div>
             </div>
             <div class="md:flex flex-row pr-4 pb-4 pl-1 pt-1 gap-1 justify-between">
@@ -50,14 +45,16 @@
 </template>
 
 <script>
-import checkOnline from "../mixins/CheckOnline.js";
 import Error from "../shared/errors/Error.vue";
 import Status from "../shared/statuses/Status.vue";
+import OnlineOfflineStatus from "../shared/statuses/OnlineOfflineStatus.vue";
+import checkOnline from "../mixins/CheckOnline.js";
 
 export default {
     components: {
         Error,
-        Status
+        Status,
+        OnlineOfflineStatus
     },
     mixins: [checkOnline],
     props: {

@@ -13,12 +13,7 @@
             <div class="p-4 w-full">
                 <div class="flex flex-row justify-between">
                     <div class="flex gap-2">
-                        <div v-if="checkOnline(this.device.last_access, 10)">
-                            <span class="badge badge-info font-semibold">Online</span>
-                        </div>
-                        <div v-else>
-                            <span class="badge badge-error font-semibold">Offline</span>
-                        </div>
+                        <OnlineOfflineStatus :online="checkOnline(this.device.last_access, 10)"></OnlineOfflineStatus>
                         <template v-for="status in this.getActiveStatuses">
                             <Status :status="status" :settings-page="false"></Status>
                         </template>
@@ -68,11 +63,13 @@ import {mapGetters} from "vuex";
 import Error from "../shared/errors/Error.vue";
 import Status from "../shared/statuses/Status.vue";
 import checkPermissions from "../mixins/checkPermissions.js";
+import OnlineOfflineStatus from "../shared/statuses/OnlineOfflineStatus.vue";
 
 export default {
     components: {
         Error,
-        Status
+        Status,
+        OnlineOfflineStatus
     },
     mixins: [checkOnline, checkPermissions],
     props: {
