@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -58,5 +59,10 @@ class Device extends Model
     public function activeStatuses(): BelongsToMany
     {
         return $this->belongsToMany(Status::class)->withTimestamps();
+    }
+
+    public function settings(): MorphOne
+    {
+        return $this->morphOne(Setting::class, 'settings_table');
     }
 }
