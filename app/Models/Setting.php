@@ -33,4 +33,11 @@ class Setting extends Model
         return $this;
     }
 
+    public function setting(string $name, $default = null)
+    {
+        if (array_key_exists($name, $this->settings)) {
+            return $this->settings[$name];
+        }    return $default;
+    }
+
 }

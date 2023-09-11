@@ -9,12 +9,11 @@ use Illuminate\Http\Request;
 class TestController extends Controller
 {
     public function test() {
+        $dev = Device::find(34);
+        StoreSetting::run($dev);
         $dev = Device::find(38);
         StoreSetting::run($dev);
 
-        return $dev->settings->settings;
-        $dev->settings->save();
-        $dev->save();
-        return $dev;
+        return $dev->settings->settings(['online_time' => 10]);
     }
 }
